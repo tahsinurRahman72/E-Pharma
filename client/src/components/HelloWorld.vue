@@ -1,6 +1,6 @@
-/* eslint-disable */
 <template>
-  <div class="hello">
+  <div class="main">
+    <!-- header section  -->
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark navbar-absolute bg-transparent shadow-none">
         <div class="container">
@@ -55,6 +55,7 @@
         </div>
       </div>
     </header>
+    <!-- footer section -->
     <section class="py-9">
       <div class="container">
         <div class="row" style="color: #f0f2f5">
