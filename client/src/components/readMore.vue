@@ -1,7 +1,7 @@
 <template>
     <div id='read'>
     <section class="py-9">
-      <div class="container">
+      <div class="container read">
         <div class="row" style="color: #f0f2f5">
           <div class="col-lg-6 my-auto">
             <h3>Read More About Us</h3>
@@ -48,3 +48,13 @@ export default {
   id: '#read'
 }
 </script>
+<style scoped>
+.read{
+  animation: read 1.25s;
+  animation-direction: alternate;
+}
+@keyframes read {
+  0%   {opacity: 0%;}
+  100%  {opacity: 100%;}
+}
+</style>

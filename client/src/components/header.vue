@@ -16,7 +16,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="javascript:;">
+                <a class="nav-link text-white medicine-link" href="#"> <!--Work on scroll-->
                   Medicines
                 </a>
               </li>
@@ -40,8 +40,7 @@
           <button type="button" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Cart</button>
         </div>
       </nav>
-      <div class="page-header min-vh-100" loading="lazy">
-        <span class="mask"></span>
+      <div class="page-header min-vh-100 ePharma" loading="lazy">
         <div class="container">
           <div class="row">
             <div class="col-lg-6 col-md-7 d-flex justify-content-center flex-column">
@@ -58,9 +57,26 @@
     </header>
     </div>
 </template>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 export default {
-  el: '#heading'
+  el: '#heading',
+  mounted () { //work on scroll
+  $('#medicine-link').click(function () {
+    $('html, body').animate({
+      scrollTop: $("#medicine").offset().top
+    }, 2000);
+  })
+  }
 }
 </script>
+<style scoped>
+.ePharma{
+  animation: ePharma 1.25s;
+  animation-direction: alternate;
+}
+@keyframes ePharma {
+  0%   {left: -100px; opacity: 0%;}
+  100%  {left: 0px; opacity: 100%;}
+}
+</style>
