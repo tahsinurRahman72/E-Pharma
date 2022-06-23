@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "style-loader": "^3.3.1",
+    "vue-template-compiler": "^2.6.14"
+  }
+}
