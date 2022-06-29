@@ -15,6 +15,7 @@
   </section>
 </div>
 </template>
+
 <script>
 export default({
   el: '#app',

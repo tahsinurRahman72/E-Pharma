@@ -59,14 +59,24 @@
 </template>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+import axios from 'axios'
 export default {
   el: '#heading',
-  mounted () { //work on scroll
-  $('#medicine-link').click(function () {
-    $('html, body').animate({
-      scrollTop: $("#medicine").offset().top
-    }, 2000);
-  })
+  data () {
+    return {
+      medicine: {}
+    }
+
+  },
+  mounted () {
+    axios.get('http://localhost:8081/medicine')
+    .then((response) =>{
+      console.log(response.data)
+      this.medicine = response.data
+    })
+    .catch((error) =>{
+      console.log(error)
+    })
   }
 }
 </script>
