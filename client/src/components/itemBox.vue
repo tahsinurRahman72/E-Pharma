@@ -1,9 +1,6 @@
 <template>
 <div id="app">
-  <!-- <div class="card card-body blur mx-md-4 mt-n6 mx-3">
-  </div> -->
   <section class="box" id="medicine" v-for="value in medicine" :key="value">
-  <a href="google.com"></a>
     <span>
       <img src="../assets/tablet.png" alt="icon" class="image">
     </span>
@@ -29,10 +26,10 @@ export default({
           medicineName: 'Napadol', medicinePrice: '15BDT', delivery: 'Not Available'
         },
         {
-          medicineName: 'Napadol', medicinePrice: '15BDT', delivery: 'Not Available'
+          medicineName: 'Acifix', medicinePrice: '15BDT', delivery: 'Not Available'
         },
         {
-          medicineName: 'Napadol', medicinePrice: '15BDT', delivery: 'Not Available'
+          medicineName: 'Imotil', medicinePrice: '15BDT', delivery: 'Not Available'
         }
       ]
     }
@@ -89,8 +86,8 @@ section {
   color: #fff;
   flex-wrap: wrap;
   /* background: rgba(255, 255, 255, 0.1); */
-  height: max-content;
-  width: max-content;
+  height: fit-content;
+  width: fit-content;
   margin: auto;
   padding: 2px 10px 20px 10px ;
   /* border: 1px solid rgba(255, 255, 255, 0.42); */

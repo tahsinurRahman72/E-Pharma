@@ -1,30 +1,27 @@
 <template>
   <div class="main">
     <heading/>
-    <boxes/>
+    <getStarted/>
+    <displayboxes/>
     <read/>
   </div>
 </template>
 
 <script>
 import heading from './header.vue'
-import boxes from './itemBox.vue'
+import getStarted from './startMessage.vue'
+import displayboxes from './itemBox.vue'
 import read from './readMore.vue'
 export default {
-  name: 'HelloWorld',
+  name: 'main',
   data () {
     return {
-      title: '#'
     }
   },
-  mounted () {
-    let extScript = document.createElement('script')
-    extScript.setAttribute('src', './assets/script/core/bootstrap.bundle.min.js')
-    document.head.appendChild(extScript)
-  },
   components: {
-    boxes,
     heading,
+    getStarted,
+    displayboxes,
     read
   }
 }
