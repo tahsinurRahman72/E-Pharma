@@ -15,7 +15,7 @@
       </span>
       {{value.medicineNameByBrand}}
       <ul>
-        <li>Price: {{value.medicinePrice}}</li>
+        <li>Price: BDT {{value.medicinePrice}} /-</li>
         <li>Delivery Status: {{value.medicineDeliveryStatus}}</li>
       </ul>
     </section>

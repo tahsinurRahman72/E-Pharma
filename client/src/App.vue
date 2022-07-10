@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import './assets/script/core/bootstrap.bundle.min.js'
 export default {
   name: 'App'
 }
