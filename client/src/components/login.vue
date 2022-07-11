@@ -1,5 +1,8 @@
 <template>
     <div>
+        <div class="head-container">
+            <heading/>
+        </div>
         <section>
             <div class="container py-4">
                 <div class="row">
@@ -7,39 +10,24 @@
                     <h3 class="text-center">Login</h3>
                     <form role="form" id="contact-form" method="post" autocomplete="off">
                     <div class="card-body">
-                        <div class="row">
-                        <div class="col-md-6">
-                            <div class="input-group input-group-dynamic mb-4">
-                            <label class="form-label">First Name</label>
-                            <input class="form-control" aria-label="First Name..." type="text" >
-                            </div>
-                        </div>
-                        <div class="col-md-6 ps-2">
-                            <div class="input-group input-group-dynamic">
-                            <label class="form-label">Last Name</label>
-                            <input type="text" class="form-control" placeholder="" aria-label="Last Name..." >
-                            </div>
-                        </div>
-                        </div>
                         <div class="mb-4">
                         <div class="input-group input-group-dynamic">
                             <label class="form-label">Email Address</label>
                             <input type="email" class="form-control">
                         </div>
                         </div>
-                        <div class="input-group mb-4 input-group-static">
-                        <label>Your message</label>
-                        <textarea name="message" class="form-control" id="message" rows="4"></textarea>
+                        <div class="mb-4">
+                        <div class="input-group input-group-dynamic">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control">
+                        </div>
                         </div>
                         <div class="row">
                         <div class="col-md-12">
-                            <div class="form-check form-switch mb-4 d-flex align-items-center">
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked="">
-                            <label class="form-check-label ms-3 mb-0" for="flexSwitchCheckDefault">I agree to the <a href="javascript:;" class="text-dark"><u>Terms and Conditions</u></a>.</label>
-                            </div>
+                            <button type="submit" class="btn bg-gradient-dark w-100">Login</button>
                         </div>
                         <div class="col-md-12">
-                            <button type="submit" class="btn bg-gradient-dark w-100">Send Message</button>
+                            <label class="form-check-label ms-3 mb-0">New user?  <router-link to="/sign-up" class="text-dark"><u>Signup</u></router-link>.</label>
                         </div>
                         </div>
                     </div>
@@ -48,22 +36,35 @@
                 </div>
             </div>
         </section>
+        <div class="footer-container">
+            <foot/>
+        </div>
     </div>
 </template>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script scoped>
 import heading from './header.vue'
+import foot from './static-footer.vue'
 export default {
   name: 'login',
   data () {
     return {}
   },
   components: {
-    heading
+    heading,
+    foot
   }
 }
+$(document).ready(function() {
+var docHeight = $(window).height();
+$('section').css('padding-block-start', docHeight/6 + 'px')
+$('section').css('padding-block-end', docHeight/3 + 'px')
+})
 </script>
 <style scoped>
+.text-center{
+    font-size: 3vw;
+}
 h3{
     padding-block-start: 1vw;
     padding-block-end: 1vw;

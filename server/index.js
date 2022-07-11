@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended: true}))
 
 app.use('/medicine', require('./routes/api/insertMedicine'))
 app.use('/medicine', require('./routes/api/showMedicineList'))
-
+app.use('/register', require('./routes/api/registerUser'))
 mongoose.connect(
     process.env.DB_CONNECT_STRING, 
     { useNewUrlParser: true, useUnifiedTopology: true},
