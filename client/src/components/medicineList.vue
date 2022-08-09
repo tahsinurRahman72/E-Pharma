@@ -8,8 +8,9 @@
         List of Medicines
       </u>
   </div>
-  <div id="medicine">
-    <section class="box" id="medicine" v-for="value in medicine" :key="value.id">
+  <div id="app">
+    <a href="https://google.com">
+    <section class="box" id="medicine" style="padding-block: 0px;" v-for="value in medicine" :key="value.id">
       <span>
         <img src="../assets/tablet.png" alt="icon" class="image">
       </span>
@@ -19,6 +20,8 @@
         <li>Delivery Status: {{value.medicineDeliveryStatus}}</li>
       </ul>
     </section>
+    </a>
+
   </div>
   <div class="page-section">
     <pagination/>
@@ -31,7 +34,7 @@ import axios from 'axios'
 import heading from './header.vue'
 import pagination from './Pagination.vue'
 export default {
-  name: 'medicine',
+  name: '#app',
   data () {
     return {
       medicine: []
@@ -57,9 +60,9 @@ export default {
 <style scoped>
 #medicine{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.3fr 1fr 1fr;
   padding-block-start: 5vw;
-
+  align-items: center;
 }
 @media only screen and (max-width: 768px) {
   .box {
@@ -120,14 +123,15 @@ section {
 .box{
   color: #fff;
   flex-wrap: wrap;
-  /* background: rgba(255, 255, 255, 0.1); */
+  background: rgba(255, 255, 255, 0.1);
   height: fit-content;
   width: fit-content;
   margin: auto;
+  margin-block-end: 9px;
   padding: 2px 10px 20px 10px ;
-  /* border: 1px solid rgba(255, 255, 255, 0.42); */
+  border: 1px solid rgba(255, 255, 255, 0.42);
   border-radius: 9px;
-  /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(4.9px);
   -webkit-backdrop-filter: blur(4.9px);
 }

@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-  <section class="box" id="medicine" v-for="value in medicine" :key="value">
+  <section class="box" v-for="value in medicine" :key="value">
     <span>
       <img src="../assets/tablet.png" alt="icon" class="image">
     </span>
@@ -15,7 +15,7 @@
 
 <script>
 export default({
-  el: '#app',
+  name: '#app',
   data () {
     return {
       medicine: [
@@ -29,7 +29,7 @@ export default({
           medicineName: 'Acifix', medicinePrice: '15BDT', delivery: 'Not Available'
         },
         {
-          medicineName: 'Imotil', medicinePrice: '15BDT', delivery: 'Not Available'
+          medicineName: 'Imotil', medicinePrice: '15BDT', delivery: 'Available'
         }
       ]
     }
@@ -72,11 +72,14 @@ section::before {
   transition: transform .3s ease;
   color: white;
 }
-
 section {
   position: relative;
   font-size: 1.5vw;
   resize: inherit;
+}
+@keyframes medicineList {
+  0%   {left: -100px; opacity: 0%;}
+  100%  {left: 0px; opacity: 100%;}
 }
 .image {
   max-width: 100%;
@@ -96,61 +99,9 @@ section {
   backdrop-filter: blur(4.9px);
   -webkit-backdrop-filter: blur(4.9px);
 }
-.mx-md-4 {
-    margin-right: 1.5rem !important;
-    margin-left: 1.5rem !important;
-}
-.mt-n6 {
-    margin-top: -4rem !important;
-}
-.mx-3 {
-    margin-right: 1rem !important;
-    margin-left: 1rem !important;
-}
 .blur {
   backdrop-filter: saturate(200%) blur(30px);
   background-color: rgba(255, 255, 255, 0.8) !important;
-}
-.card-body {
-    flex: 1 1 auto;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
-    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    color: var(--bs-card-color);
-}
-.card {
-    --bs-card-spacer-y: 1rem;
-    --bs-card-spacer-x: 1rem;
-    --bs-card-title-spacer-y: 0.5rem;
-    --bs-card-border-width: 0;
-    --bs-card-border-color: rgba(0, 0, 0, 0.125);
-    --bs-card-border-radius: 0.75rem;
-    --bs-card-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --bs-card-inner-border-radius: 0.75rem;
-    --bs-card-cap-padding-y: 0.5rem;
-    --bs-card-cap-padding-x: 1rem;
-    --bs-card-cap-bg: #fff;
-    --bs-card-cap-color: ;
-    --bs-card-height: ;
-    --bs-card-color: ;
-    --bs-card-bg: #fff;
-    --bs-card-img-overlay-padding: 1rem;
-    --bs-card-group-margin: 0.75rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    height: var(--bs-card-height);
-    word-wrap: break-word;
-    background-color: var(--bs-card-bg);
-    background-clip: border-box;
-    border: var(--bs-card-border-width) solid var(--bs-card-border-color);
-    border-radius: var(--bs-card-border-radius)
 }
 li{
   list-style: none;
@@ -162,5 +113,8 @@ li{
 ul{
   padding-inline-start: 0.2em;
   padding-inline-end: 1.5em;
+}
+u{
+  color: white;
 }
 </style>

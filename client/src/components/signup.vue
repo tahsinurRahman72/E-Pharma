@@ -4,7 +4,8 @@
             <heading/>
         </div>
         <div class="alert alert-primary text-white font-weight-bold viewAlert" id="alert">
-            Registration Successful!
+            <div v-if="index = true">Registration Successful!</div>
+            <div v-if="index = false">Registration Failed, email already exists</div>
         <button class="button" @click="hideSuccessMessage()">x</button>
         </div>
         <section>
@@ -67,7 +68,7 @@ import heading from './header.vue'
 export default {
   name: 'signup',
   data () {
-    this.checked=false
+    index=false
     return{
         user: [],
         firstname: '',
@@ -82,17 +83,19 @@ export default {
         FirstName: this.firstname,
         LastName: this.lastname,
         Email: this.email,
-        Password: this.password
+        Password: bcrypt.hash(this.password, 10)
     })
     .then((response) => {
+        this.index=true
         this.user = response.data
       })
     .catch((err)=>{
+        this.index=false
         console.log(err)
     })
     },
     showSuccessMessage () {
-        document.getElementById("alert").style.display = "block";
+        document.getElementById("alert").style.display = "flex";
     },
     hideSuccessMessage () {
         document.getElementById("alert").style.display = "none";
@@ -119,7 +122,7 @@ input{
     color: white;
 }
 .viewAlert{
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     align-content: space-between;
