@@ -8,7 +8,7 @@
                 <div class="row">
                 <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
                     <h3 class="text-center">Login</h3>
-                    <form role="form" id="contact-form" method="post" autocomplete="off">
+                    <form @submit.prevent="loginUser()" role="form" id="contact-form" method="post" autocomplete="on">
                     <div class="card-body">
                         <div class="mb-4">
                         <div class="input-group input-group-dynamic">
@@ -43,12 +43,42 @@
 </template>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script scoped>
+import axios from 'axios'
 import heading from './header.vue'
 import foot from './static-footer.vue'
 export default {
   name: 'login',
   data () {
-    return {}
+    index=false
+    return{
+        user: [],
+        email: '',
+        password: ''
+    }
+  },
+  methods: {
+    loginUser(){
+    axios.post('http://localhost:8081/login/login_user', {
+        Email: this.email,
+        Password: this.password,
+    })
+    .then((response) => {
+        this.index=true
+        const stat = JSON.parse(response.status);
+        this.user = response.data
+
+        if (stat == '200') {
+            this.$router.push({name: 'main'});
+      }
+      })
+    .catch((err)=>{
+        this.index=false
+        console.log(err)
+    })
+    },
+    LoginSuccess() {
+        document.getElementById("alert").style.display = "flex";
+    }
   },
   components: {
     heading,
