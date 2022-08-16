@@ -9,8 +9,8 @@
       </u>
   </div>
   <div id="app">
-    <a href="https://google.com">
-    <section class="box" id="medicine" style="padding-block: 0px;" v-for="value in medicine" :key="value.id">
+    <a id=text href=# target=_self v-on:click="show()">
+    <section class="box" data-hover="" id="medicine" style="padding-block: 0px;" v-for="value in medicine" :key="value.id">
       <span>
         <img src="../assets/tablet.png" alt="icon" class="image">
       </span>
@@ -21,6 +21,17 @@
       </ul>
     </section>
     </a>
+  </div>
+  <div id=aa style="display:none">
+    <a href=# target_self v-on:click="hide()" class=right>x</a>
+    <div class="addToCartOrDescription">
+    <li class="nav-item">
+      <button type="button" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Add to Cart</button>
+    </li>
+    <li class="nav-item">
+      <button type="button" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Cart</button>
+    </li>
+    </div>
 
   </div>
   <div class="page-section">
@@ -50,14 +61,28 @@ export default {
         console.log(error)
       })
   },
+  methods: {
+    /* eslint-disable */
+    show(){
+      document.getElementById("aa").style.display = "inline-block";  
+    },
+    hide() {
+      document.getElementById("aa").style.display = "none";   
+    }
+  },
   components: {
     heading,
     pagination
   }
 }
+
 </script>
 
 <style scoped>
+.addToCartOrDescription{
+    display: flex;
+    margin-right: 0px;
+}
 #medicine{
   display: grid;
   grid-template-columns: 0.3fr 1fr 1fr;
@@ -152,5 +177,22 @@ ul{
 }
 u{
   color: white;
+}
+.right {
+  float: right;
+  color: white; 
+}
+#aa {
+  font-weight: bold;
+  position:fixed;
+  margin-inline-start: 120vh;
+  padding: 15px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  /* width: 250px;
+  height: 100px; */
+  box-sizing: content-box;
+  /* border: 3px solid black; */
 }
 </style>

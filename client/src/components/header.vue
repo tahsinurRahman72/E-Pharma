@@ -18,7 +18,7 @@
                 </router-link>
               </li>
               <li class="nav-item mx-2">
-                <router-link to="/medicine" class="nav-link text-white medicine-link"> <!--Work on scroll-->
+                <router-link to="/medicine" class="nav-link text-white medicine-link">
                   Medicines
                 </router-link>
               </li>
@@ -42,8 +42,11 @@
               <li class="nav-item">
                 <button type="button" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Cart</button>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" id="showLogin">
                 <button type="button" v-on:click="goToLogin()" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Login</button>
+              </li>
+              <li class="nav-item" id="showLogout">
+                <button type="button" v-on:click="goToLogout()" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Logout</button>
               </li>
             </ul>
           </div>
@@ -52,16 +55,26 @@
     </div>
 </template>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-<script>
 
+<script>
+/* eslint-disable */
 export default {
   data () {
     return {
     }
   },
+  props: {
+    stat: Boolean
+  },
   methods: {
     goToLogin () {
       this.$router.push('/login')
+    },
+    changeView () {
+      if (this.stat) {
+        document.getElementById("showLogin").style.display = "none";
+        document.getElementById("showLogout").style.display = "";
+      }
     }
   }
 }

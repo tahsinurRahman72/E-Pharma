@@ -47,13 +47,17 @@ import axios from 'axios'
 import heading from './header.vue'
 import foot from './static-footer.vue'
 export default {
+  components: {
+    heading
+  },
   name: 'login',
   data () {
     index=false
     return{
         user: [],
         email: '',
-        password: ''
+        password: '',
+        index
     }
   },
   methods: {
@@ -69,6 +73,7 @@ export default {
 
         if (stat == '200') {
             this.$router.push({name: 'main'});
+            document.getElement
       }
       })
     .catch((err)=>{
@@ -77,7 +82,7 @@ export default {
     })
     },
     LoginSuccess() {
-        document.getElementById("alert").style.display = "flex";
+        stat = this.index
     }
   },
   components: {
