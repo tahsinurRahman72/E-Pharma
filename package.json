@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@chenfengyuan/vue-number-input": "^2.0.1",
+    "vue": "^3.2.37",
+    "vue-numeric-input": "^2.0.0"
+  }
+}

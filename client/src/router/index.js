@@ -4,6 +4,8 @@ import main from '@/components/homePage'
 import Medicine from '@/components/medicineList'
 import Login from '@/components/login'
 import Signup from '@/components/signup'
+import medCart from '@/components/medCart'
+
 Vue.use(Router)
 
 export default new Router({
@@ -27,6 +29,11 @@ export default new Router({
       path: '/sign-up',
       name: 'signup',
       component: Signup
+    },
+    {
+      path: '/medCart',
+      name: 'medCart',
+      component: medCart
     }
   ]
 })

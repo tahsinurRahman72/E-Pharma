@@ -40,7 +40,7 @@
             </ul>
             <ul class="navbar-nav d-lg-block d-none">
               <li class="nav-item">
-                <button type="button" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Cart</button>
+                <button v-on:click="goToMedCart()" type="button" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Cart</button>
               </li>
               <li class="nav-item" id="showLogin">
                 <button type="button" v-on:click="goToLogin()" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Login</button>
@@ -69,6 +69,9 @@ export default {
   methods: {
     goToLogin () {
       this.$router.push('/login')
+    },
+    goToMedCart() {
+      this.$router.push('/medCart')
     },
     changeView () {
       if (this.stat) {

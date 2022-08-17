@@ -1,55 +1,48 @@
 <template>
-<div>
-  <div class="header-container">
-    <heading/>
-  </div>
-  <div class="medicineList">
-      <u>
-        List of Medicines
-      </u>
-  </div>
-  <div id="app">
-    <a id=text href=# v-on:click="show($event)">
-    <button v-on:click="getProductUuid()" class="box" data-hover="" id="medicine" style="padding-block: 0px;" v-for="value in medicine" :key="value.id">
-      <span>
-        <img src="../assets/tablet.png" alt="icon" class="image">
-      </span>
-      <div id="uuid" style="display:none">
-        {{value.uuid}}
-      </div>
-      <div class="name">
-        {{value.medicineNameByBrand}}
-      </div>
-      <ul>
-        <li>Price: BDT {{value.medicinePrice}} /-</li>
-        <li>Delivery Status: {{value.medicineDeliveryStatus}}</li>
-      </ul>
-    </button>
-    </a>
-  </div>
-  <div id=aa style="display:none">
-    <a href=# target_self v-on:click="hide()" class=right>x</a>
     <div>
-      <vue-numeric-input v-model="num" align="center" width="125px" ></vue-numeric-input>
-      <li class="nav-item" style="padding-right: 0px;">
-        <button v-on:click="getprodId()" type="button" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Add to Cart</button>
-      </li>
+        <div class="head-container">
+            <heading/>
+        </div>
+        <section>
+            <div id="medCart" class="container py-4">
+                    <h3 class="text-center">Cart</h3>
+                    <form @submit.prevent="checkOut()" role="form" id="contact-form" method="post">
+                    <!-- <div class="card-body">
+                        <section class="box" data-hover="" id="medicine" style="padding-block: 0px;" v-for="value in medicine" :key="value.id">
+                        <span>
+                            <img src="../assets/tablet.png" alt="icon" class="image">
+                        </span>
+                        <div id="uuid" style="display:none">
+                            {{value.uuid}}
+                        </div>
+                        <div class="name">
+                            {{value.medicineNameByBrand}}
+                        </div>
+                        <ul>
+                            <li>Price: BDT {{value.medicinePrice}} /-</li>
+                            <li>Delivery Status: {{value.medicineDeliveryStatus}}</li>
+                        </ul>
+                        </section>
+                    </div> -->
+                    </form>
+            </div>
+        </section>
+        <div class="footer-container">
+            <foot/>
+        </div>
     </div>
-  </div>
-  <div class="page-section">
-    <pagination/>
-  </div>
-</div>
 </template>
-
-<script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script scoped>
 import axios from 'axios'
 import heading from './header.vue'
-import pagination from './Pagination.vue'
-import VueNumericInput from 'vue-numeric-input'
-
+import foot from './static-footer.vue'
 export default {
-  name: '#app',
+    name: 'medCart',
+    props:[],
+  components: {
+    heading
+  },
   data () {
     return {
       num: 0,
@@ -67,32 +60,17 @@ export default {
         console.log(error)
       })
   },
-  methods: {
-    /* eslint-disable */
-    show(e){
-      document.getElementById("aa").style.display = "inline-block";  
-    },
-    hide() {
-      document.getElementById("aa").style.display = "none";
-      this.num = 0;
-    },
-    getprodId() {
-      var amount = this.num
-      console.log(amount)
-    },
-    getProductUuid() {
-      var product = document.getElementById("uuid").textContent
-      console.log(product)
-    }
-  },
   components: {
     heading,
-    pagination,
-    VueNumericInput
+    foot
   }
 }
+$(document).ready(function() {
+var docHeight = $(window).height();
+$('section').css('padding-block-start', docHeight/15 + 'px')
+$('section').css('padding-block-end', docHeight/4 + 'px')
+})
 </script>
-
 <style scoped>
 #medicine{
   display: grid;
@@ -191,7 +169,7 @@ u{
 }
 .right {
   float: right;
-  color: white; 
+  color: white;
 }
 #aa {
 
