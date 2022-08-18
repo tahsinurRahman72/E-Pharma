@@ -6,9 +6,9 @@
         <section>
             <div id="medCart" class="container py-4">
                     <h3 class="text-center">Cart</h3>
-                    <form @submit.prevent="checkOut()" role="form" id="contact-form" method="post">
+                    <form @submit.prevent="checkOut()" role="form" id="contact-form" method="post" >
                     <div class="card-body">
-                        <section class="box" data-hover="" id="medicine" style="padding-block: 0px;" v-for="value in prodAndQuant" :key="value.id">
+                        <section v-on:click="show()" class="box" data-hover="" id="medicine" style="padding-block: 0px;" v-for="value in prodAndQuant" :key="value.id">
                         <span>
                             <img src="../assets/tablet.png" alt="icon" class="image">
                         </span>
@@ -20,6 +20,17 @@
                           <li>Delivery Status: {{value.medicineDeliveryStatus}}</li>
                         </ul>
                         </section>
+                        <li style="display: flex; justify-content: center">
+                          <button v-on:click="showSuccessMessage()" type="submit" class="btn btn-primary w-auto me-2 justify-space-between">Checkout</button>
+                        </li>
+                        <div id=aa style="display:none">
+                          <a href="#" v-on:click="hide()">Hide</a>
+                          <div>
+                            <li class="nav-item" style="padding-right: 0px;">
+                              <button v-on:click="getprodAmount()" type="button" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Remove</button>
+                            </li>
+                          </div>
+                        </div>
                     </div>
                     </form>
             </div>
@@ -54,6 +65,16 @@ export default {
       .catch((error) => {
         console.log(error)
       })
+  },
+  methods:{
+    removeItem(){
+    },
+    show(e){
+      document.getElementById("aa").style.display = "inline-block";
+    },
+    hide() {
+      document.getElementById("aa").style.display = "none";
+    },
   },
   components: {
     heading,
@@ -103,24 +124,16 @@ section::before {
   transition: transform .3s ease;
   color: white;
 }
-
+.right {
+  float: right;
+  color: white;
+}
 section {
   position: relative;
   font-size: 1.5vw;
   resize: inherit;
 }
-.header-container{
-  padding-block-start: 1vw;
-  padding-block-end: 50px;
-}
-.medicineList{
-  padding-block-start: 2vw;
-  padding-inline-start: 5.5vw;
-  height: fit-content;
-  font-size: 2.0vw;
-  animation: medicineList 1.25s;
-  animation-direction: alternate;
-}
+
 @keyframes medicineList {
   0%   {left: -100px; opacity: 0%;}
   100%  {left: 0px; opacity: 100%;}
@@ -144,10 +157,7 @@ section {
   backdrop-filter: blur(4.9px);
   -webkit-backdrop-filter: blur(4.9px);
 }
-.blur {
-  backdrop-filter: saturate(200%) blur(30px);
-  background-color: rgba(255, 255, 255, 0.8) !important;
-}
+
 li{
   list-style: none;
   padding-block-start: 0.2em;
@@ -160,10 +170,6 @@ ul{
   padding-inline-end: 1.5em;
 }
 u{
-  color: white;
-}
-.right {
-  float: right;
   color: white;
 }
 #aa {

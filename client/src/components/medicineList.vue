@@ -27,11 +27,10 @@
     <div>
       <vue-numeric-input v-model="num" align="center" width="125px" ></vue-numeric-input>
       <li class="nav-item" style="padding-right: 0px;">
-        <button v-on:click="getprodAmount()" type="button" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Add to Cart</button>
+        <button v-on:click="getprodAmount(), selectItemsForCart()" type="button" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Add to Cart</button>
       </li>
     </div>
   </div>
-  <div id="log" style="display: none"></div>
   <div class="page-section">
     <pagination/>
   </div>
@@ -50,8 +49,9 @@ export default {
     return {
       num: 0,
       medicine: [],
-      prodAndQuant: [],
-      uuid: 0
+      medName: null,
+      quantity: 0,
+      prodAndQuant: []
     }
   },
   mounted () {
@@ -66,10 +66,10 @@ export default {
   },
   methods: {
     /* eslint-disable */
-    selectItemsForCart () {
-    axios.post('localhost:8081/cartItems/cart_items', {
-        uuid: getProductUuid(),
-        quantity: getprodId()
+    selectItemsForCart() {
+    axios.post('http://localhost:8081/cartItems/cart_items', {
+        name: this.medName,
+        quantity: this.quantity
     })
     .then((response) => {
         this.prodAndQuant = response.data
@@ -89,13 +89,17 @@ export default {
       var amount = this.num
       document.getElementById("aa").style.display = "none";
       setTimeout(function() { alert("Medicine Added"); }, 3);
-      console.log(amount)
-      return amount
+      // console.log(amount)
+      this.quantity = amount
+      console.log(this.quantity)
+      // return amount
     },
     getProductName() {
-      var productName = event.target.textContent
-      console.log(productName)
-      return productName
+      var productName = event.target.textContent.trim()
+      // console.log(productName)
+      this.medName = productName
+      console.log(this.medName)
+      // return productName
     }
   },
   components: {
