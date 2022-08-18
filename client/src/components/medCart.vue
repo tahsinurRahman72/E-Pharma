@@ -68,6 +68,13 @@ export default {
   },
   methods:{
     removeItem(){
+      axios.delete('http://localhost:8081/cartItems/show_cart_items')
+      .then((response)=>{
+        //tbd
+      })
+    },
+    checkOut(){
+      this.$router.push('/checkoutPage')
     },
     show(e){
       document.getElementById("aa").style.display = "inline-block";

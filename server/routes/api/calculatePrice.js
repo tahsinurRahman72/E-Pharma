@@ -3,22 +3,30 @@ const route = express.Router()
 const showCart = require('../../models/cartModel')
 const medicineList = require('../../models/medicine')
 
-route.get('/show_cart_items', async(req,res) =>{
+route.get('/checkout_items', async(req,res) =>{
     try{
-        const cartItemUuid = await showCart.distinct('uuid')    //gives a list of uuid of selected items
+        const cartItemName = await showCart.distinct('name')    //gives a list of uuid of selected items
+        // console.log(cartItemName)
         const cartItemQuantity = await showCart.distinct('quantity') //gives a list of quantity of selected items
-
-        const medicinesListUuid = await medicineList.distinct('uuid')   //gives a list of uuid of medicine items
+        // console.log(cartItemQuantity)
+        const medicinesListName = await medicineList.distinct('medicineNameByBrand')   //gives a list of uuid of medicine items
+        // console.log(medicinesListName)
         const medicinesListPrice = await medicineList.distinct('medicinePrice')
+        // console.log(medicinesListPrice)
+
+        let Finalprice = 0
+        var selectedItems = []
+        var quantity = cartItemQuantity
 
         async function calculatePrice(){
-            let zippedList = medicinesListUuid.map((x, i) => [x, medicinesListPrice[i]]);
-            // console.log(cartItemQuantity)
-            let Finalprice = 0
+            let zippedList = medicinesListName.map((x, i) => [x, medicinesListPrice[i]]);
+            // console.log(zippedList)
+            selectedItems = zippedList
+            // console.log(selectedItems[0])
             for (let [uuid, price] of zippedList){
-                for(let cUuid in cartItemUuid){
+                for(let cUuid in cartItemName){
                     // console.log(`${price}`)
-                    if(cartItemUuid[cUuid] == `${uuid}`){
+                    if(cartItemName[cUuid] == `${uuid}`){
                         // console.log(cartItemQuantity[cUuid])
                         // console.log(`${price}`)
                         Finalprice += cartItemQuantity[cUuid] * `${price}`
@@ -26,7 +34,11 @@ route.get('/show_cart_items', async(req,res) =>{
                     }
                 }
             }
-            return Finalprice
+            return {
+                finalPrice: Finalprice, 
+                itemSelected: selectedItems, 
+                quantityOfItems: quantity
+            }
         }
 
         calculatePrice().then((data)=>{

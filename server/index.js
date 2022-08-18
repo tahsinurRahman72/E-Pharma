@@ -15,6 +15,7 @@ app.use('/login', require('./routes/api/loginUser'))
 app.use('/dashboard', require('./routes/api/dashboard'))
 app.use('/cartItems', require('./routes/api/cartItems'))
 app.use('/cartItems', require('./routes/api/showCartItems'))
+app.use('/checkout', require('./routes/api/calculatePrice'))
 
 mongoose.connect(
     process.env.DB_CONNECT_STRING, 
