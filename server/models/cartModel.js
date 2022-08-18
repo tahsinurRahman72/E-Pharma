@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const cartItem = new Schema({
-    uuid: String,
+    name: String,
     quantity: Number
 }, {collection: 'cartItems'});
 

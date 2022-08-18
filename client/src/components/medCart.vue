@@ -12,18 +12,13 @@
                         <span>
                             <img src="../assets/tablet.png" alt="icon" class="image">
                         </span>
+                        <div class="name">
+                            {{value.medicineNameByBrand}}
+                        </div>
                         <ul>
-                          <li>
-                              {{value.uuid}}
-                          </li>
-                          <li>
-                              {{value.quantity}}
-                          </li>
+                          <li>Price: BDT {{value.medicinePrice}} /-</li>
+                          <li>Delivery Status: {{value.medicineDeliveryStatus}}</li>
                         </ul>
-                        <!-- <ul>
-                            <li>Price: BDT {{value.medicinePrice}} /-</li>
-                            <li>Delivery Status: {{value.medicineDeliveryStatus}}</li>
-                        </ul> -->
                         </section>
                     </div>
                     </form>

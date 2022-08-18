@@ -9,15 +9,11 @@
       </u>
   </div>
   <div id="medicineList">
-    <a id=text href=# v-on:click="show($event)">
-    <button v-on:click="getProductUuid()" class="box" data-hover="" id="medicine" style="padding-block: 0px;" v-for="value in medicine" :key="value.id">
+    <button v-on:click="getProductName(), show($event)" class="box" data-hover="" id="medicine" style="padding-block: 0px;" v-for="value in medicine" :key="value.id">
       <span>
         <img src="../assets/tablet.png" alt="icon" class="image">
       </span>
-      <div id="uuid" style="display:none">
-        {{value.uuid}}
-      </div>
-      <div class="name">
+      <div class="medName">
         {{value.medicineNameByBrand}}
       </div>
       <ul>
@@ -25,23 +21,23 @@
         <li>Delivery Status: {{value.medicineDeliveryStatus}}</li>
       </ul>
     </button>
-    </a>
   </div>
   <div id=aa style="display:none">
     <a href=# target_self v-on:click="hide()" class=right>x</a>
     <div>
       <vue-numeric-input v-model="num" align="center" width="125px" ></vue-numeric-input>
       <li class="nav-item" style="padding-right: 0px;">
-        <button v-on:click="getprodId()" type="button" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Add to Cart</button>
+        <button v-on:click="getprodAmount()" type="button" class="btn btn-primary w-auto me-2 justify-space-between" style="margin-bottom: 0px;">Add to Cart</button>
       </li>
     </div>
   </div>
+  <div id="log" style="display: none"></div>
   <div class="page-section">
     <pagination/>
   </div>
 </div>
 </template>
-
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
 import axios from 'axios'
 import heading from './header.vue'
@@ -83,21 +79,23 @@ export default {
     })
     },
     show(e){
-      document.getElementById("aa").style.display = "inline-block";  
+      document.getElementById("aa").style.display = "inline-block";
     },
     hide() {
       document.getElementById("aa").style.display = "none";
       this.num = 0;
     },
-    getprodId() {
+    getprodAmount() {
       var amount = this.num
-      // console.log(amount)
+      document.getElementById("aa").style.display = "none";
+      setTimeout(function() { alert("Medicine Added"); }, 3);
+      console.log(amount)
       return amount
     },
-    getProductUuid() {
-      var product = document.getElementById("uuid").textContent
-      // console.log(product)
-      return product
+    getProductName() {
+      var productName = event.target.textContent
+      console.log(productName)
+      return productName
     }
   },
   components: {
@@ -123,17 +121,17 @@ export default {
     grid-row-gap: 10px;
   }
 }
-section::before {
+#medicine::before {
   transform: scaleX(0);
   transform-origin: bottom right;
 }
 
-section:hover::before {
+#medicine:hover::before {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
 
-section::before {
+#medicine::before {
   content: " ";
   display: block;
   position: absolute;
@@ -145,8 +143,7 @@ section::before {
   transition: transform .3s ease;
   color: white;
 }
-
-section {
+#medicine {
   position: relative;
   font-size: 1.5vw;
   resize: inherit;
@@ -154,6 +151,10 @@ section {
 .header-container{
   padding-block-start: 1vw;
   padding-block-end: 50px;
+}
+.medName{
+  height: fit-content;
+  font-size: 1.8vw;
 }
 .medicineList{
   padding-block-start: 2vw;
@@ -206,7 +207,7 @@ u{
 }
 .right {
   float: right;
-  color: white; 
+  color: white;
 }
 #aa {
 
