@@ -7,23 +7,25 @@
             <div id="medCart" class="container py-4">
                     <h3 class="text-center">Cart</h3>
                     <form @submit.prevent="checkOut()" role="form" id="contact-form" method="post">
-                    <!-- <div class="card-body">
-                        <section class="box" data-hover="" id="medicine" style="padding-block: 0px;" v-for="value in medicine" :key="value.id">
+                    <div class="card-body">
+                        <section class="box" data-hover="" id="medicine" style="padding-block: 0px;" v-for="value in prodAndQuant" :key="value.id">
                         <span>
                             <img src="../assets/tablet.png" alt="icon" class="image">
                         </span>
-                        <div id="uuid" style="display:none">
-                            {{value.uuid}}
-                        </div>
-                        <div class="name">
-                            {{value.medicineNameByBrand}}
-                        </div>
                         <ul>
+                          <li>
+                              {{value.uuid}}
+                          </li>
+                          <li>
+                              {{value.quantity}}
+                          </li>
+                        </ul>
+                        <!-- <ul>
                             <li>Price: BDT {{value.medicinePrice}} /-</li>
                             <li>Delivery Status: {{value.medicineDeliveryStatus}}</li>
-                        </ul>
+                        </ul> -->
                         </section>
-                    </div> -->
+                    </div>
                     </form>
             </div>
         </section>
@@ -39,22 +41,20 @@ import heading from './header.vue'
 import foot from './static-footer.vue'
 export default {
     name: 'medCart',
-    props:[],
   components: {
     heading
   },
   data () {
     return {
       num: 0,
-      medicine: [],
       prodAndQuant: []
     }
   },
   mounted () {
-    axios.get('http://localhost:8081/medicine/show_medicine')
+    axios.get('http://localhost:8081/cartItems/show_cart_items')
       .then((response) => {
         console.log(response.data)
-        this.medicine = response.data
+        this.prodAndQuant = response.data
       })
       .catch((error) => {
         console.log(error)

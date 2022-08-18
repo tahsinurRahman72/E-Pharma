@@ -8,7 +8,7 @@
         List of Medicines
       </u>
   </div>
-  <div id="app">
+  <div id="medicineList">
     <a id=text href=# v-on:click="show($event)">
     <button v-on:click="getProductUuid()" class="box" data-hover="" id="medicine" style="padding-block: 0px;" v-for="value in medicine" :key="value.id">
       <span>
@@ -49,12 +49,13 @@ import pagination from './Pagination.vue'
 import VueNumericInput from 'vue-numeric-input'
 
 export default {
-  name: '#app',
+  name: 'medicineList',
   data () {
     return {
       num: 0,
       medicine: [],
-      prodAndQuant: []
+      prodAndQuant: [],
+      uuid: 0
     }
   },
   mounted () {
@@ -69,6 +70,18 @@ export default {
   },
   methods: {
     /* eslint-disable */
+    selectItemsForCart () {
+    axios.post('localhost:8081/cartItems/cart_items', {
+        uuid: getProductUuid(),
+        quantity: getprodId()
+    })
+    .then((response) => {
+        this.prodAndQuant = response.data
+      })
+    .catch((err)=>{
+        console.log(err)
+    })
+    },
     show(e){
       document.getElementById("aa").style.display = "inline-block";  
     },
@@ -78,11 +91,13 @@ export default {
     },
     getprodId() {
       var amount = this.num
-      console.log(amount)
+      // console.log(amount)
+      return amount
     },
     getProductUuid() {
       var product = document.getElementById("uuid").textContent
-      console.log(product)
+      // console.log(product)
+      return product
     }
   },
   components: {
